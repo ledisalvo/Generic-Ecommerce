@@ -14,11 +14,11 @@ namespace Generic_Ecommerce.Application.Features.Products.GetProductStockById
 
         public async Task<Result<int>> Handle(GetProductStockByIdQuery request, CancellationToken cancellationToken)
         {
-            var productStock = await _productRepository.GetStockByIdAsync(request.ProductId);
-            if (productStock == 0)
+            var productStock = await _productRepository.GetByIdAsync(request.ProductId);
+            if (productStock.StockQuantity == 0)
                 return Result<int>.Fail(AppErrorCatalog.ProductOutOfStock.Code, AppErrorCatalog.ProductOutOfStock.Message);
 
-            return Result<int>.Ok(productStock);
+            return Result<int>.Ok(productStock.StockQuantity);
         }
     }
 }

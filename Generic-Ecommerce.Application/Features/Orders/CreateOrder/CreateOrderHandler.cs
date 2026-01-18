@@ -41,8 +41,8 @@ namespace Generic_Ecommerce.Application.Features.Orders.CreateOrder
                 if (product is null)
                     return Result<Guid>.Fail(AppErrorCatalog.ProductNotFound.Code, AppErrorCatalog.ProductNotFound.Message);
 
-                var productStock = await _productRepository.GetStockByIdAsync(item.ProductId);
-                if (productStock == 0)
+                var productStock = await _productRepository.GetByIdAsync(item.ProductId);
+                if (productStock.StockQuantity == 0)
                     return Result<Guid>.Fail(AppErrorCatalog.ProductOutOfStock.Code, AppErrorCatalog.ProductOutOfStock.Message);
 
                 product.DecreaseStock(item.Quantity);
