@@ -7,6 +7,7 @@
 
         public static readonly Error OrderNotFound = new("ORDER_NOTFOUND", "La orden no existe en el sistema.");
         public static readonly Error OrderOrderItemsEmpty = new("ORDER_ORDERITEMS_EMPTY", "La orden debe contar con al menos un producto y no puede estar vacía.");
+        public static readonly Error GetCustomerOrderEmpty = new("ORDER_GETCUSTOMERORDER_EMPTY", "El usuario no tiene ordenes de compras asociadas.");
 
         public static readonly Error ProductNotFound = new("PRODUCT_NOTFOUND", "Ese producto no existe en el sistema.");
         public static readonly Error ProductOutOfStock = new("PRODUCT_OUTOFSTOCK", "Ese producto se encuentra con faltante de stock.");
