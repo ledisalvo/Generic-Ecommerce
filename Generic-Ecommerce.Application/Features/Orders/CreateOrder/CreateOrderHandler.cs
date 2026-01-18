@@ -27,11 +27,11 @@ namespace Generic_Ecommerce.Application.Features.Orders.CreateOrder
             CancellationToken cancellationToken)
         {
             if (request.Items.Count == 0)
-                return Result<Guid>.Fail(AppErrorCatalog.OrderOrderItemsEmpty.Code, AppErrorCatalog.OrderOrderItemsEmpty.Message);
+                throw new BusinessException(AppErrorCatalog.OrderOrderItemsEmpty.Code, AppErrorCatalog.OrderOrderItemsEmpty.Message);
 
             var customer = await _customerRepository.GetByIdAsync(request.CustomerId);
             if (customer is null)
-                return Result<Guid>.Fail(AppErrorCatalog.GetCustomerCustomerNotFound.Code, AppErrorCatalog.GetCustomerCustomerNotFound.Message);
+                throw new NotFoundException(AppErrorCatalog.GetCustomerCustomerNotFound.Code, AppErrorCatalog.GetCustomerCustomerNotFound.Message);
 
             var order = new Order(request.CustomerId);
 
@@ -39,11 +39,11 @@ namespace Generic_Ecommerce.Application.Features.Orders.CreateOrder
             {
                 var product = await _productRepository.GetByIdAsync(item.ProductId);
                 if (product is null)
-                    return Result<Guid>.Fail(AppErrorCatalog.ProductNotFound.Code, AppErrorCatalog.ProductNotFound.Message);
+                    throw new NotFoundException(AppErrorCatalog.ProductNotFound.Code, AppErrorCatalog.ProductNotFound.Message);
 
                 var productStock = await _productRepository.GetByIdAsync(item.ProductId);
-                if (productStock.StockQuantity == 0)
-                    return Result<Guid>.Fail(AppErrorCatalog.ProductOutOfStock.Code, AppErrorCatalog.ProductOutOfStock.Message);
+                if (productStock?.StockQuantity == 0)
+                    throw new BusinessException(AppErrorCatalog.ProductOutOfStock.Code, AppErrorCatalog.ProductOutOfStock.Message);
 
                 product.DecreaseStock(item.Quantity);
 

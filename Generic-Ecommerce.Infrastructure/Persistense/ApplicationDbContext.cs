@@ -15,7 +15,7 @@ namespace Generic_Ecommerce.Infrastructure.Persistense
             : base(options) { }
 
         public DbSet<Order> Orders => Set<Order>();
-        public DbSet<OrderItem> OrderItems => Set<OrderItem>();
+        //public DbSet<OrderItem> OrderItems => Set<OrderItem>();
         public DbSet<Product> Products => Set<Product>();
         public DbSet<Customer> Customers => Set<Customer>();
 
@@ -23,6 +23,23 @@ namespace Generic_Ecommerce.Infrastructure.Persistense
         {
             modelBuilder.ApplyConfigurationsFromAssembly(
                 typeof(ApplicationDbContext).Assembly);
+
+            modelBuilder.Ignore<OrderItem>();
+
+            modelBuilder.Entity<Order>(order =>
+            {
+                order.HasKey(o => o.Id);
+
+                order.OwnsMany(o => o.OrderItems, item =>
+                {
+                    item.WithOwner().HasForeignKey("OrderId");
+
+                    item.Property<Guid>("Id");
+                    item.HasKey("Id");
+
+                    item.Property(i => i.UnitPrice).HasPrecision(18, 2);
+                });
+            });
         }
     }
 

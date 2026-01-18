@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Generic_Ecommerce.API</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="14.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Generic-Ecommerce.Application\Generic-Ecommerce.Application.csproj" />
+    <ProjectReference Include="..\Generic-Ecommerce.Domain\Generic-Ecommerce.Domain.csproj" />
+    <ProjectReference Include="..\Generic-Ecommerce.Infrastructure\Generic-Ecommerce.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -8,5 +8,6 @@ namespace Generic_Ecommerce.Application.Interfaces.Repositories
         Task AddAsync(Customer customer);
         Task<Customer> GetByIdAsync(Guid customerId);
         Task<bool> ExistsByEmailAsync(string email);
+        Task<List<Customer>> GetAll();
     }
 }

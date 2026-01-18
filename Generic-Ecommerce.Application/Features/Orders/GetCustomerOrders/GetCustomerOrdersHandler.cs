@@ -21,7 +21,7 @@ namespace Generic_Ecommerce.Application.Features.Orders.GetCustomerOrders
             var orders = await _orderRepository.GetByCustomerIdAsync(request.CustomerId);
 
             if (orders is null)
-                return Result<List<CustomerOrderDto>>.Fail(AppErrorCatalog.GetCustomerOrderEmpty.Code, AppErrorCatalog.GetCustomerOrderEmpty.Message);
+                throw new BusinessException(AppErrorCatalog.GetCustomerOrderEmpty.Code, AppErrorCatalog.GetCustomerOrderEmpty.Message);
 
             return Result<List<CustomerOrderDto>>.Ok(orders.Select(o => new CustomerOrderDto
             {

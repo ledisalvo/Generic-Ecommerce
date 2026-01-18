@@ -21,7 +21,7 @@ namespace Generic_Ecommerce.Application.Features.Orders.ChangeOrderStatus
             var order = await _orderRepository.GetByIdAsync(request.OrderId);
 
             if (order is null)
-                return Result<bool>.Fail(AppErrorCatalog.OrderNotFound.Code, AppErrorCatalog.OrderNotFound.Message);
+                throw new NotFoundException(AppErrorCatalog.OrderNotFound.Code, AppErrorCatalog.OrderNotFound.Message);
 
             order.ChangeStatus(request.NewStatus);
             await _orderRepository.UpdateAsync(order);

@@ -16,7 +16,7 @@ namespace Generic_Ecommerce.Application.Features.Products.GetProductStockById
         {
             var productStock = await _productRepository.GetByIdAsync(request.ProductId);
             if (productStock.StockQuantity == 0)
-                return Result<int>.Fail(AppErrorCatalog.ProductOutOfStock.Code, AppErrorCatalog.ProductOutOfStock.Message);
+                throw new BusinessException(AppErrorCatalog.ProductOutOfStock.Code, AppErrorCatalog.ProductOutOfStock.Message);
 
             return Result<int>.Ok(productStock.StockQuantity);
         }

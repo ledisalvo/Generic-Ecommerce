@@ -4,16 +4,6 @@ namespace Generic_Ecommerce.Domain.Entities
 {
     public class OrderItem
     {
-        ///// <summary>
-        ///// ID de la relación producto <-> orden de compra
-        ///// </summary>
-        //public Guid Id { get; private set; }
-
-        ///// <summary>
-        ///// ID de la orden a la que esta asociada este producto. Campo requerido.
-        ///// </summary>
-        //public Guid OrderId { get; private set; }
-
         /// <summary>
         /// ID del producto que esta relacionado con la orden de compra. Campo requerido.
         /// </summary>

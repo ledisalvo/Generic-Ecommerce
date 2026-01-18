@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Generic_Ecommerce.Application.Exceptions;
+﻿using Generic_Ecommerce.Application.Exceptions;
 using Generic_Ecommerce.Application.Features.Orders.GetCustomerOrders;
 using Generic_Ecommerce.Application.Interfaces.Repositories;
 using MediatR;
@@ -23,7 +22,7 @@ namespace Generic_Ecommerce.Application.Features.Customer.GetCustomerById
         {
             var customer = await _customerRepository.GetByIdAsync(request.CustomerId);
             if (customer is null)
-                return Result<CustomerDetailDto>.Fail(AppErrorCatalog.GetCustomerCustomerNotFound.Code, AppErrorCatalog.GetCustomerCustomerNotFound.Message);
+                throw new NotFoundException(AppErrorCatalog.GetCustomerCustomerNotFound.Code, AppErrorCatalog.GetCustomerCustomerNotFound.Message);
 
             var orders = await _orderRepository.GetByCustomerIdAsync(customer.Id);
 

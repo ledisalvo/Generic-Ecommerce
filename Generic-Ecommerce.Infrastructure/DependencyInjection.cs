@@ -18,7 +18,7 @@ namespace Generic_Ecommerce.Infrastructure
 
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
-            //services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
 
             return services;
         }
