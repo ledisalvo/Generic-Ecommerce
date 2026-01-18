@@ -15,7 +15,6 @@
         #region ORDER
         public static readonly Error OrderIdEmpty = new("ORDER_ID_EMPTY", "El ID de la orden está vacio y es un campo requerido.");
         public static readonly Error OrderTotalAmountNegative = new("ORDER_TOTALAMOUNT_NEGATIVE", "El monto total de la orden no puede ser negativo.");
-        public static readonly Error OrderOrderItemsEmpty = new("ORDER_ORDERITEMS_EMPTY", "La orden debe contar con al menos un producto y no puede estar vacía.");
         public static readonly Error OrderStatusPending = new("ORDER_STATUS_PENDING", "La orden no se puede modificar mientras se encuentre en estado pendiente.");
         public static readonly Error OrderStatusInvalidTransition = new("ORDER_STATUS_INVALIDTRANSITION", "Esa transición es inválida entre esos dos estados");
         #endregion ORDER
@@ -23,9 +22,9 @@
         #region PRODUCT
         public static readonly Error ProductIdEmpty = new("PRODUCT_ID_EMPTY", "El ID del producto está vacio y es un campo requerido.");
         public static readonly Error ProductNameEmpty = new("PRODUCT_NAME_EMPTY", "El nombre del producto está vacio y es un campo requerido.");
-        public static readonly Error ProductQuantityNegative = new("PRODUCT_QUANTITY_NEGATIVE", "La cantidad de los productos no puede ser negativa.");
         public static readonly Error ProductPriceNegative = new("PRODUCT_PRICE_NEGATIVE", "El precio del producto no puede ser negativo.");
         public static readonly Error ProductStockNegative = new("PRODUCT_STOCK_NEGATIVE", "El stock del producto no puede ser negativo.");
+        public static readonly Error ProductQuantityNegative = new("PRODUCT_QUANTITY_NEGATIVE", "La cantidad de los productos no puede ser negativa.");
         public static readonly Error ProductStockInsufficient = new("PRODUCT_STOCK_INSUFFICIENT", "No hay Stock suficiente para este producto.");
         #endregion PRODUCT
 

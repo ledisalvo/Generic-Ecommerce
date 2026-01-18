@@ -36,23 +36,15 @@ namespace Generic_Ecommerce.Domain.Entities
         public List<OrderItem> _orderItem = new();
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItem.AsReadOnly();
 
-        public Order(Guid id, Guid customerId, decimal totalAmount, DateTime createdAt, OrderStatus status, List<OrderItem> orderItems)
+        public Order(Guid customerId)
         {
             if (customerId == Guid.Empty)
                 throw new DomainException(ErrorCatalog.CustomerIdEmpty.Code, ErrorCatalog.CustomerIdEmpty.Message);
 
-            if (totalAmount < 0m)
-                throw new DomainException(ErrorCatalog.OrderTotalAmountNegative.Code, ErrorCatalog.OrderTotalAmountNegative.Message);
-
-            if (orderItems.Count == 0)
-                throw new DomainException(ErrorCatalog.OrderOrderItemsEmpty.Code, ErrorCatalog.OrderOrderItemsEmpty.Message);
-
-
             Id = Guid.NewGuid();
             CustomerId = customerId;
-            TotalAmount = totalAmount;
-            CreatedAt = createdAt == default ? DateTime.UtcNow : createdAt;
-            Status = status;
+            CreatedAt = DateTime.UtcNow;
+            Status = OrderStatus.Pending;
         }
 
         /// <summary>
@@ -60,15 +52,12 @@ namespace Generic_Ecommerce.Domain.Entities
         /// </summary>
         /// <param name="orderItem">Objeto que representa el item (producto) de la orden</param>
         /// <exception cref="DomainException"></exception>
-        public void AddItem(OrderItem orderItem)
+        public void AddItem(Guid productId, int quantity, decimal unitPrice)
         {
-            if (orderItem == null)
-                throw new DomainException(ErrorCatalog.OrderOrderItemsEmpty.Code, ErrorCatalog.OrderOrderItemsEmpty.Message);
-
             if (Status != OrderStatus.Pending)
                 throw new DomainException(ErrorCatalog.OrderStatusPending.Code, ErrorCatalog.OrderStatusPending.Message);
 
-            _orderItem.Add(orderItem);
+            _orderItem.Add(new OrderItem(productId, quantity, unitPrice));
         }
 
         /// <summary>

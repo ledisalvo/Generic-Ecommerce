@@ -4,15 +4,15 @@ namespace Generic_Ecommerce.Domain.Entities
 {
     public class OrderItem
     {
-        /// <summary>
-        /// ID de la relación producto <-> orden de compra
-        /// </summary>
-        public Guid Id { get; private set; }
+        ///// <summary>
+        ///// ID de la relación producto <-> orden de compra
+        ///// </summary>
+        //public Guid Id { get; private set; }
 
-        /// <summary>
-        /// ID de la orden a la que esta asociada este producto. Campo requerido.
-        /// </summary>
-        public Guid OrderId { get; private set; }
+        ///// <summary>
+        ///// ID de la orden a la que esta asociada este producto. Campo requerido.
+        ///// </summary>
+        //public Guid OrderId { get; private set; }
 
         /// <summary>
         /// ID del producto que esta relacionado con la orden de compra. Campo requerido.
@@ -29,11 +29,8 @@ namespace Generic_Ecommerce.Domain.Entities
         /// </summary>
         public decimal UnitPrice { get; private set; }
 
-        public OrderItem(Guid id, Guid orderId, Guid productId, int quantity, decimal unitPrice)
+        public OrderItem(Guid productId, int quantity, decimal unitPrice)
         {
-            if (orderId == Guid.Empty)
-                throw new DomainException(ErrorCatalog.OrderIdEmpty.Code, ErrorCatalog.OrderIdEmpty.Message);
-
             if (productId == Guid.Empty)
                 throw new DomainException(ErrorCatalog.ProductIdEmpty.Code, ErrorCatalog.ProductIdEmpty.Message);
 
@@ -43,8 +40,7 @@ namespace Generic_Ecommerce.Domain.Entities
             if (unitPrice < 0m)
                 throw new DomainException(ErrorCatalog.ProductPriceNegative.Code, ErrorCatalog.ProductPriceNegative.Message);
 
-            Id = Guid.NewGuid();
-            OrderId = orderId;
+            //Id = Guid.NewGuid();
             ProductId = productId;
             Quantity = quantity;
             UnitPrice = unitPrice;

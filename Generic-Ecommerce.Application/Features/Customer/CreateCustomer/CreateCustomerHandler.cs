@@ -5,7 +5,8 @@ using MediatR;
 
 namespace Generic_Ecommerce.Application.Features.Customer.CreateCustomer
 {
-    public class CreateCustomerHandler : IRequestHandler<CreateCustomerCommand, Result<Guid>>
+    public class CreateCustomerHandler 
+        : IRequestHandler<CreateCustomerCommand, Result<Guid>>
     {
         private readonly ICustomerRepository _customerRepository;
 
