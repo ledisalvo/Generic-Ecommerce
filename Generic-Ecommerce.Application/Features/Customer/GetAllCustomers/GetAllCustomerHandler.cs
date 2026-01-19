@@ -21,9 +21,9 @@ namespace Generic_Ecommerce.Application.Features.Customer.GetAllCustomers
 
         public async Task<Result<List<CustomerDto>>> Handle(GetAllCustomersQuery request, CancellationToken cancellationToken)
         {
-            var orders = await _customerRepository.GetAll();
+            var customers = await _customerRepository.GetAll();
 
-            return Result<List<CustomerDto>>.Ok(orders.Select(x => new CustomerDto
+            return Result<List<CustomerDto>>.Ok(customers.Select(x => new CustomerDto
             {
                 Id = x.Id,
                 Name = x.Name,

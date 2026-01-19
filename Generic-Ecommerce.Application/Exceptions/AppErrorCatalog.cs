@@ -11,6 +11,9 @@
 
         public static readonly Error ProductNotFound = new("PRODUCT_NOTFOUND", "Ese producto no existe en el sistema.");
         public static readonly Error ProductOutOfStock = new("PRODUCT_OUTOFSTOCK", "Ese producto se encuentra con faltante de stock.");
+        public static readonly Error CreateProductNameEmpty = new("PRODUCT_CREATEPRODUCT_NAMEEMPTY", "El nombre del producto no puede estar vacío.");
+        public static readonly Error CreateProductPriceNegative = new("PRODUCT_CREATEPRODUCT_PRICENEGATIVE", "El precio del producto no puede ser negativo.");
+        public static readonly Error CreateProductStockQuantityNegative = new("PRODUCT_CREATEPRODUCT_STOCKQNEGATIVE", "El stock del producto no puede ser negativo.");
     }
 
 }

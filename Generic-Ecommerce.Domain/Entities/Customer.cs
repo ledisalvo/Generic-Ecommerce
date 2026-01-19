@@ -30,18 +30,18 @@ namespace Generic_Ecommerce.Domain.Entities
         private readonly List<Order> _orders = new();
         public IReadOnlyCollection<Order> Orders => _orders.AsReadOnly();
 
-        public Customer(Guid id, string name, string email, string? phoneNumber = null)
-        {
-            if (id == Guid.Empty)
-                throw new DomainException(ErrorCatalog.CustomerIdEmpty.Code, ErrorCatalog.CustomerIdEmpty.Message);
+        // Constructor para EF
+        private Customer() { }
 
+        public Customer(string name, string email, string? phoneNumber = null)
+        {
             if (string.IsNullOrWhiteSpace(name))
                 throw new DomainException(ErrorCatalog.CustomerNameEmpty.Code, ErrorCatalog.CustomerNameEmpty.Message);
 
             if (string.IsNullOrWhiteSpace(email))
                 throw new DomainException(ErrorCatalog.CustomerEmailEmpty.Code, ErrorCatalog.CustomerEmailEmpty.Message);
 
-            Id = id;
+            Id = Guid.NewGuid();
             Name = name;
             Email = email;
             PhoneNumber = phoneNumber;

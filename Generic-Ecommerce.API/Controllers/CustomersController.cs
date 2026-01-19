@@ -43,7 +43,7 @@ namespace Generic_Ecommerce.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/getAll")]
+        [HttpGet()]
         public async Task<IActionResult> GetAll(Guid id)
         {
             var result = await _mediator.Send(

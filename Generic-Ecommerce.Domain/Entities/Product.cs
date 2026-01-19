@@ -24,6 +24,8 @@ namespace Generic_Ecommerce.Domain.Entities
         /// </summary>
         public int StockQuantity { get; private set; }
 
+        private Product() { }
+
         public Product(string name, decimal price, int stockQuantity)
         {
             if (string.IsNullOrWhiteSpace(name))

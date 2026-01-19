@@ -38,6 +38,8 @@ namespace Generic_Ecommerce.Infrastructure.Persistense
                     item.HasKey("Id");
 
                     item.Property(i => i.UnitPrice).HasPrecision(18, 2);
+
+                    item.UsePropertyAccessMode(PropertyAccessMode.Field);
                 });
             });
         }

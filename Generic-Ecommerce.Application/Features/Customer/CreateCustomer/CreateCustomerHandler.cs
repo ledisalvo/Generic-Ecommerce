@@ -21,7 +21,6 @@ namespace Generic_Ecommerce.Application.Features.Customer.CreateCustomer
                 throw new BusinessException(AppErrorCatalog.CreateCustomerCustomerExists.Code, AppErrorCatalog.CreateCustomerCustomerExists.Message);
 
             var customer = new Domain.Entities.Customer(
-                request.Id,
                 request.Name,
                 request.Email,
                 request.PhoneNumber

@@ -36,6 +36,7 @@ namespace Generic_Ecommerce.Domain.Entities
         public List<OrderItem> _orderItem = new();
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItem.AsReadOnly();
 
+        private Order() { }
         public Order(Guid customerId)
         {
             if (customerId == Guid.Empty)
